@@ -18,6 +18,12 @@ def generate_scene_breakdown(prompt):
     The JSON should follow this schema:
     {
       "title": "Video Title",
+      "style": {
+        "theme": "dark-neon | light-minimal | gradient-modern | cyberpunk",
+        "camera": "static | slow-zoom | gentle-drift | dynamic",
+        "motion": "smooth | energetic | calm | professional",
+        "palette": "blue-purple | red-orange | green-teal | monochrome"
+      },
       "scenes": [
         {
           "id": 1,
@@ -32,6 +38,14 @@ def generate_scene_breakdown(prompt):
         }
       ]
     }
+    
+    IMPORTANT STYLE RULES:
+    - ALWAYS include the "style" block - if user doesn't specify, choose "dark-neon", "slow-zoom", "smooth", "blue-purple"
+    - The style block guides the overall visual aesthetic
+    - theme: Controls background and overall mood
+    - camera: Controls camera movement throughout animation
+    - motion: Controls animation pacing and rhythm
+    - palette: Controls harmonized color scheme
     
     Return ONLY the JSON string. No markdown formatting.
     """

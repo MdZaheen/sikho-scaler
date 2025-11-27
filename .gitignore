@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.env
+media/
+temp_scene.py

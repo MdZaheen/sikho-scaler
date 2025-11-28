@@ -340,3 +340,51 @@ All environment variables are in .env:
 | LaTeX error        | LaTeX automatically replaced via override |
 | FFmpeg not found     | Add FFmpeg to PATH or use auto-detect     |
 | Syntax error in code | Streamlit pipeline auto-fixes             |
+
+
+
+
+from our other branches alternate branches
+
+### Implementation 1: Streamlit Multi-Phase Pipeline 
+
+```mermaid
+graph TD
+    A[User Input: Natural Language] --> B[Phase 1: Interpretation]
+    B --> C[Gemini API]
+    C --> D[Structured JSON Scene Breakdown]
+    D --> E[Phase 2: Code Generation]
+    E --> F[Local SLM / Ollama]
+    F --> G[Executable Manim Python Code]
+    G --> H[Phase 3: Rendering]
+    H --> I[Manim Renderer]
+    I --> J{Success?}
+    J -->|Yes| K[Generated Video MP4]
+    J -->|No| L[Error Analysis]
+    L --> M[Code Auto-Fix via SLM]
+    M --> H
+    K --> N[Display to User]
+```
+
+**Key Components:**
+
+- **Interpreter** (`pipeline/interpreter.py`): Converts natural language to structured JSON
+- **Generator** (`pipeline/generator.py`): Transforms JSON to Manim Python code with self-correction
+- **Renderer** (`pipeline/renderer.py`): Executes Manim code and produces video output
+
+### Implementation 2: Flask Single-Phase Pipeline (Simplified)
+
+```mermaid
+graph TD
+    A[HTTP POST /generate] --> B[Gemini API Direct Code Generation]
+    B --> C[Code Sanitization]
+    C --> D[LaTeX Override Injection]
+    D --> E[Save as temp_scene.py]
+    E --> F[Execute Manim CLI]
+    F --> G{Success?}
+    G -->|Yes| H[Return Video URL]
+    G -->|No| I[Return Error Details]
+    H --> J[GET /video]
+    J --> K[Stream MP4 to Client]
+```
+

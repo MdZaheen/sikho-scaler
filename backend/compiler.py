@@ -1,115 +1,263 @@
-import google.generativeai as genai
+import ollama
 import os
 import json
-
-# Configure Gemini inside the function
+import re
 
 COMPILER_SYSTEM_PROMPT = """
-You are a high-end Manim animation expert acting as a deterministic compiler.
-Your goal is to convert a structured educational OUTLINE JSON into a professional, visually stunning, and highly educational Manim scene.
+You are a deterministic Manim script generator for a text-to-educational-animation engine.
 
-INPUT: A JSON object containing a list of steps.
-OUTPUT: A complete, runnable Python script using Manim Community Edition.
+Your job:
+Convert the user prompt into a single clean Manim Community Edition Python script.
 
-### STRICT RULES:
+The script will be executed automatically by a backend system, so the structure must be strict.
 
-1. **Visual Clarity & Education**:
-   - Show one step at a time. Do not rush.
-   - Use `Create()`, `FadeIn()`, or `Write()` to introduce objects gradually.
-   - Add intermediate explanation visuals (arrows, labels) where helpful.
-   - Use **COLORS**! `BLUE`, `GREEN`, `RED`, `YELLOW`, `PURPLE`, `ORANGE`, `TEAL`, `GOLD`, `MAROON`.
-   - Use `fill_opacity=0.5` for shapes.
-   - Text font size: `36` (normal) or `48` (titles).
+────────────────────────────
 
-2. **Frame & Layout Safety**:
-   - **KEEP EVERYTHING INSIDE THE FRAME**.
-   - Use safe coordinates: `LEFT*3`, `RIGHT*3`, `UP*2.5`, `DOWN*2.5`, `ORIGIN`.
-   - Avoid `camera.zoom` or moving the camera.
-   - Do not move objects offscreen unless explicitly asked.
+ABSOLUTE REQUIREMENTS
 
-3. **No Text Overlap**:
-   - **CRITICAL**: Text must NEVER overlap with other text or shapes.
-   - Always use `.next_to(target, DIRECTION, buff=0.5)` or specific non-overlapping coordinates.
-   - Do not stack labels on top of each other.
+────────────────────────────
 
-4. **Animation Pacing**:
-   - **Extend the animation** to be 10-15 seconds total.
-   - Add pauses (`self.wait(1)` or `self.wait(2)`) after every major step.
-   - Use `run_time=1.5` or `2.0` for transformations to make them easy to follow.
+Always output ONLY Python code.
 
-5. **Accuracy & Structure**:
-   - Do NOT simplify the math or logic.
-   - Follow the outline steps exactly but enhance the *presentation*.
-   - **NO LaTeX**: Use `Text("x^2")` instead of `MathTex`.
-   - Output ONLY Python code. No markdown.
+No markdown
+No explanations
+No comments
+No triple quotes
 
-6. **Audio**:
-   - If an audio path is provided, you MUST insert `self.add_sound(r"PATH", time_offset=0)` at the start.
+Exactly 1 Scene class:
 
-### EXAMPLE INPUT:
-{
-  "steps": [
-    {"action": "draw shape", "shape": "square", "label": "A", "color": "BLUE"},
-    {"action": "show text", "text": "This is a square", "position": "BELOW"}
-  ]
-}
+class GenScene(Scene):
 
-### EXAMPLE OUTPUT:
+
+Never use any other scene name.
+
+Imports:
+
+from manim import *
+
+
+No LaTeX
+Never use:
+MathTex
+Tex
+Matrix
+TexTemplate
+
+Use only:
+Text("expression or label")
+
+
+────────────────────────────
+
+ASCII RULES (CRITICAL)
+
+────────────────────────────
+
+1. NEVER output Unicode mathematical characters or subscript/superscript glyphs.
+   ❌ Do not use: ² ₁ ₓ α β γ θ π σ → ∞ × ÷
+   ✔️ Instead use ONLY plain ASCII text:
+   "x^2" instead of "x²"
+   "x_1" instead of "x₁"
+   "pi" instead of "π"
+   "velocity" instead of "→v"
+
+2. The script must be compatible with Windows console and UTF-8 only.
+   - No special glyphs, emoji, arrows, smart quotes, curly quotes, or accents.
+
+────────────────────────────
+
+VISUAL RULES (CRITICAL)
+
+────────────────────────────
+
+1. NEVER allow visuals to go outside the video frame.
+   - Keep all objects centered or inside safe boundaries.
+   - Do not let squares, shapes, or arrows clip off-screen.
+   - Standard frame is [-7, 7] horizontally and [-4, 4] vertically. Keep well within this.
+
+2. No overlapping elements.
+   - All text must be positioned with next_to(), move_to(), or buff>=0.4.
+   - All shapes must have spacing.
+   - If a square represents a², show the label inside or beside — never over other shapes.
+
+3. Visual accuracy FIRST.
+   - Show geometry clearly.
+   - Avoid rotating or stretching objects unnecessarily.
+   - Avoid random effects.
+
+────────────────────────────
+
+ANIMATION RULES
+
+────────────────────────────
+
+1. Slow down animations & make them educational.
+   - Use 0.5–1 second durations for Create(), Write(), FadeIn().
+   - Avoid sudden transitions.
+   - Avoid instant scaling or teleporting.
+
+2. Only use these animations:
+   Create
+   FadeIn
+   FadeOut
+   Write
+   Transform
+   MoveTo
+   Scale
+   Rotate
+
+3. No 3D, no camera zoom, no cinematic effects, no physics.
+
+────────────────────────────
+
+STRUCTURE & PACING
+
+────────────────────────────
+
+1. Follow step-by-step logic:
+   - Introduce main idea
+   - Draw objects (one-by-one, not overlapping)
+   - Highlight key components
+   - Explain or show the formula visually
+   - Conclude cleanly
+
+2. Keep total runtime 12–18 seconds.
+   - Use self.wait(1) or self.wait(2) to pace the video.
+
+────────────────────────────
+
+OUTPUT FORMAT EXAMPLE
+
+────────────────────────────
+
 from manim import *
 
 class GenScene(Scene):
     def construct(self):
-        # Audio
-        # self.add_sound(r"path/to/audio.mp3", time_offset=0) # Inserted by code
+        # 1. Introduce
+        title = Text("Concept Name").scale(0.8).to_edge(UP)
+        self.play(Write(title), run_time=1)
+        self.wait(0.5)
 
-        # Step 1: Draw Square with clarity
-        square = Square(color=BLUE, fill_opacity=0.5)
-        label = Text("A", font_size=48).move_to(square.get_center())
-        group = VGroup(square, label)
-        
-        self.play(Create(square), run_time=1.5)
-        self.play(Write(label))
+        # 2. Draw Objects
+        box = Square(side_length=2, color=BLUE)
+        self.play(Create(box), run_time=1)
+        self.wait(0.5)
+
+        # 3. Label (No overlap)
+        label = Text("Side = 2").next_to(box, DOWN, buff=0.5)
+        self.play(Write(label), run_time=1)
         self.wait(1)
 
-        # Step 2: Show Text with safe positioning
-        desc = Text("This is a square", font_size=36).next_to(group, DOWN, buff=1.0)
-        
-        # Ensure it doesn't go offscreen
-        if desc.get_bottom()[1] < -3.5:
-            desc.next_to(group, RIGHT, buff=1.0)
+        # 4. Conclude
+        self.play(FadeOut(box), FadeOut(label), run_time=1)
+        self.wait(1)
 
-        self.play(Write(desc), run_time=1.5)
-        self.wait(2)
+────────────────────────────
+
+FINAL OUTPUT RULE
+
+────────────────────────────
+
+➡️ Return ONLY Python code.
+➡️ No formatting, no text, no explanations.
+➡️ Only 1 Scene class named GenScene.
 """
 
 async def generate_manim_code(outline: dict, audio_path: str = None):
-    api_key = os.environ.get("GEMINI_API_KEY")
-    if not api_key:
-        raise ValueError("GEMINI_API_KEY not found in environment variables.")
-        
-    genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-2.0-flash')
-    
     outline_str = json.dumps(outline, indent=2)
     
-    audio_instruction = ""
-    if audio_path:
-        # Escape backslashes for Python string
-        safe_audio_path = audio_path.replace("\\", "/")
-        audio_instruction = f"\n\nIMPORTANT: Insert this line at the start of construct():\nself.add_sound(r'{safe_audio_path}', time_offset=0)"
+    # Audio disabled for now
+    # audio_instruction = ""
+    # if audio_path:
+    #     # Escape backslashes for Python string
+    #     safe_audio_path = audio_path.replace("\\", "/")
+    #     audio_instruction = f"\n\nIMPORTANT: Insert this line at the start of construct():\nself.add_sound(r'{safe_audio_path}', time_offset=0)"
     
-    full_prompt = f"{COMPILER_SYSTEM_PROMPT}{audio_instruction}\n\nINPUT OUTLINE:\n{outline_str}\n\nPYTHON CODE:"
+    messages = [
+        {'role': 'system', 'content': COMPILER_SYSTEM_PROMPT},
+        {'role': 'user', 'content': f"INPUT OUTLINE:\n{outline_str}\n\nPYTHON CODE:"}
+    ]
     
-    response = model.generate_content(full_prompt)
-    
-    code = response.text.strip()
-    
-    # Cleanup markdown if present
-    if code.startswith("```python"):
-        code = code[9:]
-    elif code.startswith("```"):
-        code = code[3:]
-    if code.endswith("```"):
-        code = code[:-3]
+    print("DEBUG: Generating code (Audio Disabled Version)")
+    print("Generating code with local model 'qwen-manim'...")
+    try:
+        response = ollama.chat(model='qwen-manim', messages=messages)
+        code = response['message']['content'].strip()
         
-    return code
+        # Cleanup markdown if present
+        if code.startswith("```python"):
+            code = code[9:]
+        elif code.startswith("```"):
+            code = code[3:]
+        if code.endswith("```"):
+            code = code[:-3]
+            
+        # --- POST-PROCESSING SANITIZATION ---
+        # The local model sometimes ignores the "NO LaTeX" rule.
+        # We must replace MathTex/Tex with Text to avoid crashing on systems without LaTeX.
+        if "MathTex" in code or "Tex(" in code:
+            print("WARNING: Model used LaTeX despite instructions. Sanitizing code...")
+            
+            # Replace class names
+            code = code.replace("MathTex", "Text")
+            code = code.replace("Tex(", "Text(")
+            
+            # Replace common LaTeX symbols and Unicode with plain text equivalents
+            replacements = {
+                # Greek letters
+                r"^\circ": " degrees", r"\circ": " degrees", "°": " degrees",
+                r"\theta": "theta", "θ": "theta",
+                r"\pi": "pi", "π": "pi",
+                r"\alpha": "alpha", "α": "alpha",
+                r"\beta": "beta", "β": "beta",
+                r"\gamma": "gamma", "γ": "gamma",
+                r"\sigma": "sigma", "σ": "sigma",
+                r"\Delta": "Delta", "Δ": "Delta",
+                
+                # Math operators
+                r"\times": "x", "×": "x",
+                r"\cdot": "*", "·": "*",
+                r"\div": "/", "÷": "/",
+                r"\pm": "+/-", "±": "+/-",
+                r"\approx": "~", "≈": "~",
+                r"\neq": "!=", "≠": "!=",
+                r"\le": "<=", "≤": "<=",
+                r"\ge": ">=", "≥": ">=",
+                r"\infty": "infinity", "∞": "infinity",
+                
+                # Arrows
+                r"\Rightarrow": "->", "⇒": "->",
+                r"\rightarrow": "->", "→": "->",
+                r"\leftarrow": "<-", "←": "<-",
+                
+                # Superscripts/Subscripts
+                "²": "^2", "³": "^3", "₁": "_1", "₂": "_2", "ₓ": "_x",
+                
+                # Misc
+                r"\\": "\n", # Double backslash to newline
+                "–": "-", # En dash to hyphen
+                "—": "-", # Em dash to hyphen
+                "’": "'", # Smart quotes
+                "“": '"',
+                "”": '"',
+            }
+            
+            for pattern, replacement in replacements.items():
+                code = code.replace(pattern, replacement)
+        
+        # Remove any self.add_sound calls if the model hallucinated them
+        if "self.add_sound" in code:
+            print("WARNING: Model generated audio call despite being disabled. Removing...")
+            lines = code.split('\n')
+            code = '\n'.join([line for line in lines if "self.add_sound" not in line])
+                
+        # Enforce GenScene class name
+        # Find any class definition inheriting from Scene and replace name with GenScene
+        code = re.sub(r'class\s+\w+\(Scene\):', 'class GenScene(Scene):', code)
+
+        return code
+    except Exception as e:
+        print(f"Error generating code with local model: {e}")
+        # Fallback? Or raise?
+        raise e

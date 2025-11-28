@@ -1,0 +1,6 @@
+FROM ./Qwen2.5-Manim-3B-Instruct-q4_k_m.gguf
+
+PARAMETER temperature 0.1
+PARAMETER top_p 0.1
+PARAMETER top_k 1
+PARAMETER repeat_penalty 1.1

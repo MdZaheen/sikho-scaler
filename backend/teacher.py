@@ -39,7 +39,7 @@ async def generate_outline(prompt: str):
         raise ValueError("GEMINI_API_KEY not found in environment variables.")
     
     genai.configure(api_key=api_key)
-    model = genai.GenerativeModel('gemini-2.0-flash')
+    model = genai.GenerativeModel('gemini-2.5-flash')
     
     full_prompt = f"{TEACHER_SYSTEM_PROMPT}\n\nUSER PROMPT: {prompt}\n\nOUTPUT JSON:"
     

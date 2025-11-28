@@ -1,0 +1,7 @@
+# This file is used internally by FFMPEG.
+file 'file:D:/code/finally/yu3/media/videos/Aredsquaremovingtotheright/480p15/partial_movie_files/RedSquareMovingRight/1185818338_1197616716_223132457.mp4'
+file 'file:D:/code/finally/yu3/media/videos/Aredsquaremovingtotheright/480p15/partial_movie_files/RedSquareMovingRight/624642324_3201849554_2757520171.mp4'
+file 'file:D:/code/finally/yu3/media/videos/Aredsquaremovingtotheright/480p15/partial_movie_files/RedSquareMovingRight/624642324_1942903484_4122162694.mp4'
+file 'file:D:/code/finally/yu3/media/videos/Aredsquaremovingtotheright/480p15/partial_movie_files/RedSquareMovingRight/624642324_4104207486_4066724221.mp4'
+file 'file:D:/code/finally/yu3/media/videos/Aredsquaremovingtotheright/480p15/partial_movie_files/RedSquareMovingRight/624642324_1839128356_55871471.mp4'
+file 'file:D:/code/finally/yu3/media/videos/Aredsquaremovingtotheright/480p15/partial_movie_files/RedSquareMovingRight/624642324_2965889911_3871240763.mp4'

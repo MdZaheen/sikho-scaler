@@ -1,0 +1,11 @@
+manim
+manim-voiceover[google]
+google-generativeai
+ipython
+langgraph
+langchain
+langchain_google_genai
+flask
+setuptools
+pyttsx3
+python-dotenv

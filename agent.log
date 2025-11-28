@@ -1,0 +1,507 @@
+2025-11-28 07:32:17,122 - INFO - Copying FFmpeg binary to D:\code\finally\yu3\venv\Lib\site-packages\imageio_ffmpeg\binaries\ffmpeg.exe...
+2025-11-28 07:32:17,165 - INFO - Added FFmpeg to PATH: D:\code\finally\yu3\venv\Lib\site-packages\imageio_ffmpeg\binaries
+2025-11-28 07:32:17,165 - INFO - 
+============================================================
+2025-11-28 07:32:17,166 - INFO - AUTONOMOUS MANIM STUDIO - FINAL AGENT
+2025-11-28 07:32:17,166 - INFO - Self-Healing Loop with Visual Critic
+2025-11-28 07:32:17,166 - INFO - ============================================================
+2025-11-28 07:32:17,166 - INFO - 
+STARTING AUTONOMOUS AGENT
+2025-11-28 07:32:17,166 - INFO - ============================================================
+2025-11-28 07:32:17,166 - INFO - Request: 'Explain the Area of a Circle'
+2025-11-28 07:32:17,167 - INFO - ============================================================
+2025-11-28 07:32:17,167 - INFO - 
+PLANNER thinking...
+2025-11-28 07:32:25,046 - INFO -    Plan generated (701 chars).
+FULL PLAN:
+Here's a Manim animation plan for explaining the area of a circle:
+
+*   **Visuals:** A circle appears, with its radius 'r' labeled.
+    **Narration:** "Consider a circle with radius 'r'."
+*   **Visuals:** The circle dynamically divides into numerous thin, equal sectors.
+    **Narration:** "Slice the circle into many pieces."
+*   **Visuals:** These sectors rearrange, alternating up and down, forming a wavy, rectangle-like shape.
+    **Narration:** "Arrange slices alternating up and down."
+*   **Visuals:** The wavy shape smooths into a perfect rectangle. Label its height 'r' and length 'πr'. Display "Area = πr²".
+    **Narration:** "This forms a rectangle. Height 'r', length 'πr'. Area is πr²."
+2025-11-28 07:32:25,047 - INFO - 
+============================================================
+2025-11-28 07:32:25,047 - INFO - ATTEMPT 1/3
+2025-11-28 07:32:25,047 - INFO - ============================================================
+2025-11-28 07:32:25,047 - INFO - 
+CODER working...
+2025-11-28 07:32:33,344 - INFO -    Code saved to autogen_scene.py
+2025-11-28 07:32:33,344 - INFO - 
+EXECUTOR running...
+2025-11-28 07:32:33,345 - INFO -    Scene detected: AreaOfACircleScene
+2025-11-28 07:32:33,345 - INFO - Rendering AreaOfACircleScene...
+2025-11-28 07:32:37,150 - ERROR - Manim Failed:
+'sox' is not recognized as an internal or external command,
+operable program or batch file.
+D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+┌───────────────────── Traceback (most recent call last) ─────────────────────┐
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim\cli\render\commands.py:125 │
+│ in render                                                                   │
+│                                                                             │
+│   122 │   │   │   try:                                                      │
+│   123 │   │   │   │   with tempconfig({}):                                  │
+│   124 │   │   │   │   │   scene = SceneClass()                              │
+│ > 125 │   │   │   │   │   scene.render()                                    │
+│   126 │   │   │   except Exception:                                         │
+│   127 │   │   │   │   error_console.print_exception()                       │
+│   128 │   │   │   │   sys.exit(1)                                           │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim\scene\scene.py:237 in      │
+│ render                                                                      │
+│                                                                             │
+│    234 │   │   """                                                          │
+│    235 │   │   self.setup()                                                 │
+│    236 │   │   try:                                                         │
+│ >  237 │   │   │   self.construct()                                         │
+│    238 │   │   except EndSceneEarlyException:                               │
+│    239 │   │   │   pass                                                     │
+│    240 │   │   except RerunSceneException:                                  │
+│                                                                             │
+│ D:\code\finally\yu3\autogen_scene.py:15 in construct                        │
+│                                                                             │
+│   12 │   │   obj = VGroup(circ, r_label)                                    │
+│   13 │   │                                                                  │
+│   14 │   │   # Step 1                                                       │
+│ > 15 │   │   with self.voiceover(text="Consider a circle with radius 'r'.") │
+│   16 │   │   │   self.play(Create(obj), run_time=tracker.duration)          │
+│   17 │   │                                                                  │
+│   18 │   │   # Create the sectors and animate them into the rectangle shape │
+│                                                                             │
+│ C:\Users\joyce\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:14 │
+│ 1 in __enter__                                                              │
+│                                                                             │
+│   138 │   │   # they are only needed for recreation, which is not possible  │
+│   139 │   │   del self.args, self.kwds, self.func                           │
+│   140 │   │   try:                                                          │
+│ > 141 │   │   │   return next(self.gen)                                     │
+│   142 │   │   except StopIteration:                                         │
+│   143 │   │   │   raise RuntimeError("generator didn't yield") from None    │
+│   144                                                                       │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\voiceover_scene. │
+│ py:187 in voiceover                                                         │
+│                                                                             │
+│   184 │   │                                                                 │
+│   185 │   │   try:                                                          │
+│   186 │   │   │   if text is not None:                                      │
+│ > 187 │   │   │   │   yield self.add_voiceover_text(text, **kwargs)         │
+│   188 │   │   │   elif ssml is not None:                                    │
+│   189 │   │   │   │   yield self.add_voiceover_ssml(ssml, **kwargs)         │
+│   190 │   │   finally:                                                      │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\voiceover_scene. │
+│ py:70 in add_voiceover_text                                                 │
+│                                                                             │
+│    67 │   │   │   )                                                         │
+│    68 │   │                                                                 │
+│    69 │   │   dict_ = self.speech_service._wrap_generate_from_text(text, ** │
+│ >  70 │   │   tracker = VoiceoverTracker(self, dict_, self.speech_service.c │
+│    71 │   │   self.renderer.skip_animations = self.renderer._original_skipp │
+│    72 │   │   self.add_sound(str(Path(self.speech_service.cache_dir) / dict │
+│    73 │   │   self.current_tracker = tracker                                │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\tracker.py:49 in │
+│ __init__                                                                    │
+│                                                                             │
+│    46 │   │   self.scene = scene                                            │
+│    47 │   │   self.data = data                                              │
+│    48 │   │   self.cache_dir = cache_dir                                    │
+│ >  49 │   │   self.duration = get_duration(Path(cache_dir) / self.data["fin │
+│    50 │   │   # last_t = scene.last_t                                       │
+│    51 │   │   last_t = scene.renderer.time                                  │
+│    52 │   │   if last_t is None:                                            │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\modify_audio.py: │
+│ 22 in get_duration                                                          │
+│                                                                             │
+│   19                                                                        │
+│   20                                                                        │
+│   21 def get_duration(path: str) -> float:                                  │
+│ > 22 │   audio = MP3(path)                                                  │
+│   23 │   return audio.info.length                                           │
+│   24 │   # return sox.file_info.duration(path)                              │
+│   25                                                                        │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\_file.py:48 in __init__  │
+│                                                                             │
+│    45 │   │   │   warnings.warn("FileType constructor requires a filename", │
+│    46 │   │   │   │   │   │     DeprecationWarning)                         │
+│    47 │   │   else:                                                         │
+│ >  48 │   │   │   self.load(*args, **kwargs)                                │
+│    49 │                                                                     │
+│    50 │   @loadfile()                                                       │
+│    51 │   def load(self, filething, *args, **kwargs):                       │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\_util.py:156 in wrapper  │
+│                                                                             │
+│    153 │   │   │   │   convert_file_args(args, kwargs)                      │
+│    154 │   │   │   with _openfile(self, filething, filename, fileobj,       │
+│    155 │   │   │   │   │   │      writable, create) as h:                   │
+│ >  156 │   │   │   │   return func(self, h, *args, **kwargs)                │
+│    157 │   │                                                                │
+│    158 │   │   @wraps(func)                                                 │
+│    159 │   │   def wrapper_func(*args, **kwargs):                           │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\id3\_file.py:420 in load │
+│                                                                             │
+│   417 │   │   else:                                                         │
+│   418 │   │   │   offset = None                                             │
+│   419 │   │                                                                 │
+│ > 420 │   │   self.info = self._Info(fileobj, offset)                       │
+│   421                                                                       │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\_util.py:185 in wrapper  │
+│                                                                             │
+│    182 │   │   @wraps(func)                                                 │
+│    183 │   │   def wrapper(*args, **kwargs):                                │
+│    184 │   │   │   try:                                                     │
+│ >  185 │   │   │   │   return func(*args, **kwargs)                         │
+│    186 │   │   │   except exc_dest:                                         │
+│    187 │   │   │   │   raise                                                │
+│    188 │   │   │   except exc_src as err:                                   │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\mp3\__init__.py:401 in   │
+│ __init__                                                                    │
+│                                                                             │
+│   398 │   │   │   del frames[:]                                             │
+│   399 │   │                                                                 │
+│   400 │   │   if first_frame is None:                                       │
+│ > 401 │   │   │   raise HeaderNotFoundError("can't sync to MPEG frame")     │
+│   402 │   │                                                                 │
+│   403 │   │   assert first_frame                                            │
+│   404                                                                       │
+└─────────────────────────────────────────────────────────────────────────────┘
+HeaderNotFoundError: can't sync to MPEG frame
+
+2025-11-28 07:32:37,152 - ERROR -    Runtime Error!
+2025-11-28 07:32:37,152 - ERROR -                                                                            │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\mp3\__init__.py:401 in   │
+│ __init__                                    ...
+2025-11-28 07:32:37,152 - INFO - 
+============================================================
+2025-11-28 07:32:37,153 - INFO - ATTEMPT 2/3
+2025-11-28 07:32:37,153 - INFO - ============================================================
+2025-11-28 07:32:37,153 - INFO - 
+CODER working...
+2025-11-28 07:32:44,671 - INFO -    Code saved to autogen_scene.py
+2025-11-28 07:32:44,672 - INFO - 
+EXECUTOR running...
+2025-11-28 07:32:44,672 - INFO -    Scene detected: AutogenScene
+2025-11-28 07:32:44,672 - INFO - Rendering AutogenScene...
+2025-11-28 07:32:47,398 - ERROR - Manim Failed:
+'sox' is not recognized as an internal or external command,
+operable program or batch file.
+D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+┌───────────────────── Traceback (most recent call last) ─────────────────────┐
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim\cli\render\commands.py:125 │
+│ in render                                                                   │
+│                                                                             │
+│   122 │   │   │   try:                                                      │
+│   123 │   │   │   │   with tempconfig({}):                                  │
+│   124 │   │   │   │   │   scene = SceneClass()                              │
+│ > 125 │   │   │   │   │   scene.render()                                    │
+│   126 │   │   │   except Exception:                                         │
+│   127 │   │   │   │   error_console.print_exception()                       │
+│   128 │   │   │   │   sys.exit(1)                                           │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim\scene\scene.py:237 in      │
+│ render                                                                      │
+│                                                                             │
+│    234 │   │   """                                                          │
+│    235 │   │   self.setup()                                                 │
+│    236 │   │   try:                                                         │
+│ >  237 │   │   │   self.construct()                                         │
+│    238 │   │   except EndSceneEarlyException:                               │
+│    239 │   │   │   pass                                                     │
+│    240 │   │   except RerunSceneException:                                  │
+│                                                                             │
+│ D:\code\finally\yu3\autogen_scene.py:10 in construct                        │
+│                                                                             │
+│    7 │   │   self.set_speech_service(PyTTSX3Service())                      │
+│    8 │   │                                                                  │
+│    9 │   │   # Step 1                                                       │
+│ > 10 │   │   with self.voiceover(text="[Consider a circle with radius 'r'.] │
+│   11 │   │   │   obj = Circle(radius=1.5, color=GOLD)                       │
+│   12 │   │   │   label = Text("r", font_size=24).next_to(obj, UR)           │
+│   13 │   │   │   group = VGroup(obj, label)                                 │
+│                                                                             │
+│ C:\Users\joyce\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:14 │
+│ 1 in __enter__                                                              │
+│                                                                             │
+│   138 │   │   # they are only needed for recreation, which is not possible  │
+│   139 │   │   del self.args, self.kwds, self.func                           │
+│   140 │   │   try:                                                          │
+│ > 141 │   │   │   return next(self.gen)                                     │
+│   142 │   │   except StopIteration:                                         │
+│   143 │   │   │   raise RuntimeError("generator didn't yield") from None    │
+│   144                                                                       │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\voiceover_scene. │
+│ py:187 in voiceover                                                         │
+│                                                                             │
+│   184 │   │                                                                 │
+│   185 │   │   try:                                                          │
+│   186 │   │   │   if text is not None:                                      │
+│ > 187 │   │   │   │   yield self.add_voiceover_text(text, **kwargs)         │
+│   188 │   │   │   elif ssml is not None:                                    │
+│   189 │   │   │   │   yield self.add_voiceover_ssml(ssml, **kwargs)         │
+│   190 │   │   finally:                                                      │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\voiceover_scene. │
+│ py:70 in add_voiceover_text                                                 │
+│                                                                             │
+│    67 │   │   │   )                                                         │
+│    68 │   │                                                                 │
+│    69 │   │   dict_ = self.speech_service._wrap_generate_from_text(text, ** │
+│ >  70 │   │   tracker = VoiceoverTracker(self, dict_, self.speech_service.c │
+│    71 │   │   self.renderer.skip_animations = self.renderer._original_skipp │
+│    72 │   │   self.add_sound(str(Path(self.speech_service.cache_dir) / dict │
+│    73 │   │   self.current_tracker = tracker                                │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\tracker.py:49 in │
+│ __init__                                                                    │
+│                                                                             │
+│    46 │   │   self.scene = scene                                            │
+│    47 │   │   self.data = data                                              │
+│    48 │   │   self.cache_dir = cache_dir                                    │
+│ >  49 │   │   self.duration = get_duration(Path(cache_dir) / self.data["fin │
+│    50 │   │   # last_t = scene.last_t                                       │
+│    51 │   │   last_t = scene.renderer.time                                  │
+│    52 │   │   if last_t is None:                                            │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\modify_audio.py: │
+│ 22 in get_duration                                                          │
+│                                                                             │
+│   19                                                                        │
+│   20                                                                        │
+│   21 def get_duration(path: str) -> float:                                  │
+│ > 22 │   audio = MP3(path)                                                  │
+│   23 │   return audio.info.length                                           │
+│   24 │   # return sox.file_info.duration(path)                              │
+│   25                                                                        │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\_file.py:48 in __init__  │
+│                                                                             │
+│    45 │   │   │   warnings.warn("FileType constructor requires a filename", │
+│    46 │   │   │   │   │   │     DeprecationWarning)                         │
+│    47 │   │   else:                                                         │
+│ >  48 │   │   │   self.load(*args, **kwargs)                                │
+│    49 │                                                                     │
+│    50 │   @loadfile()                                                       │
+│    51 │   def load(self, filething, *args, **kwargs):                       │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\_util.py:156 in wrapper  │
+│                                                                             │
+│    153 │   │   │   │   convert_file_args(args, kwargs)                      │
+│    154 │   │   │   with _openfile(self, filething, filename, fileobj,       │
+│    155 │   │   │   │   │   │      writable, create) as h:                   │
+│ >  156 │   │   │   │   return func(self, h, *args, **kwargs)                │
+│    157 │   │                                                                │
+│    158 │   │   @wraps(func)                                                 │
+│    159 │   │   def wrapper_func(*args, **kwargs):                           │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\id3\_file.py:420 in load │
+│                                                                             │
+│   417 │   │   else:                                                         │
+│   418 │   │   │   offset = None                                             │
+│   419 │   │                                                                 │
+│ > 420 │   │   self.info = self._Info(fileobj, offset)                       │
+│   421                                                                       │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\_util.py:185 in wrapper  │
+│                                                                             │
+│    182 │   │   @wraps(func)                                                 │
+│    183 │   │   def wrapper(*args, **kwargs):                                │
+│    184 │   │   │   try:                                                     │
+│ >  185 │   │   │   │   return func(*args, **kwargs)                         │
+│    186 │   │   │   except exc_dest:                                         │
+│    187 │   │   │   │   raise                                                │
+│    188 │   │   │   except exc_src as err:                                   │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\mp3\__init__.py:401 in   │
+│ __init__                                                                    │
+│                                                                             │
+│   398 │   │   │   del frames[:]                                             │
+│   399 │   │                                                                 │
+│   400 │   │   if first_frame is None:                                       │
+│ > 401 │   │   │   raise HeaderNotFoundError("can't sync to MPEG frame")     │
+│   402 │   │                                                                 │
+│   403 │   │   assert first_frame                                            │
+│   404                                                                       │
+└─────────────────────────────────────────────────────────────────────────────┘
+HeaderNotFoundError: can't sync to MPEG frame
+
+2025-11-28 07:32:47,400 - ERROR -    Runtime Error!
+2025-11-28 07:32:47,400 - ERROR -                                                                            │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\mp3\__init__.py:401 in   │
+│ __init__                                    ...
+2025-11-28 07:32:47,400 - INFO - 
+============================================================
+2025-11-28 07:32:47,401 - INFO - ATTEMPT 3/3
+2025-11-28 07:32:47,401 - INFO - ============================================================
+2025-11-28 07:32:47,401 - INFO - 
+CODER working...
+2025-11-28 07:32:56,083 - INFO -    Code saved to autogen_scene.py
+2025-11-28 07:32:56,084 - INFO - 
+EXECUTOR running...
+2025-11-28 07:32:56,085 - INFO -    Scene detected: AutogenScene
+2025-11-28 07:32:56,086 - INFO - Rendering AutogenScene...
+2025-11-28 07:33:06,807 - ERROR - Manim Failed:
+'sox' is not recognized as an internal or external command,
+operable program or batch file.
+D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\__init__.py:4: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  import pkg_resources
+┌───────────────────── Traceback (most recent call last) ─────────────────────┐
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim\cli\render\commands.py:125 │
+│ in render                                                                   │
+│                                                                             │
+│   122 │   │   │   try:                                                      │
+│   123 │   │   │   │   with tempconfig({}):                                  │
+│   124 │   │   │   │   │   scene = SceneClass()                              │
+│ > 125 │   │   │   │   │   scene.render()                                    │
+│   126 │   │   │   except Exception:                                         │
+│   127 │   │   │   │   error_console.print_exception()                       │
+│   128 │   │   │   │   sys.exit(1)                                           │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim\scene\scene.py:237 in      │
+│ render                                                                      │
+│                                                                             │
+│    234 │   │   """                                                          │
+│    235 │   │   self.setup()                                                 │
+│    236 │   │   try:                                                         │
+│ >  237 │   │   │   self.construct()                                         │
+│    238 │   │   except EndSceneEarlyException:                               │
+│    239 │   │   │   pass                                                     │
+│    240 │   │   except RerunSceneException:                                  │
+│                                                                             │
+│ D:\code\finally\yu3\autogen_scene.py:14 in construct                        │
+│                                                                             │
+│   11 │   │   label_r = Text("r", font_size=24).next_to(circle, RIGHT)       │
+│   12 │   │   circle_label = VGroup(circle, label_r)                         │
+│   13 │   │                                                                  │
+│ > 14 │   │   with self.voiceover(text="Consider a circle with radius 'r'.") │
+│   15 │   │   │   self.play(Create(circle), Write(label_r), run_time=tracker │
+│   16 │   │                                                                  │
+│   17 │   │   # Visual 2: Dividing the circle into sectors                   │
+│                                                                             │
+│ C:\Users\joyce\AppData\Local\Programs\Python\Python313\Lib\contextlib.py:14 │
+│ 1 in __enter__                                                              │
+│                                                                             │
+│   138 │   │   # they are only needed for recreation, which is not possible  │
+│   139 │   │   del self.args, self.kwds, self.func                           │
+│   140 │   │   try:                                                          │
+│ > 141 │   │   │   return next(self.gen)                                     │
+│   142 │   │   except StopIteration:                                         │
+│   143 │   │   │   raise RuntimeError("generator didn't yield") from None    │
+│   144                                                                       │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\voiceover_scene. │
+│ py:187 in voiceover                                                         │
+│                                                                             │
+│   184 │   │                                                                 │
+│   185 │   │   try:                                                          │
+│   186 │   │   │   if text is not None:                                      │
+│ > 187 │   │   │   │   yield self.add_voiceover_text(text, **kwargs)         │
+│   188 │   │   │   elif ssml is not None:                                    │
+│   189 │   │   │   │   yield self.add_voiceover_ssml(ssml, **kwargs)         │
+│   190 │   │   finally:                                                      │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\voiceover_scene. │
+│ py:70 in add_voiceover_text                                                 │
+│                                                                             │
+│    67 │   │   │   )                                                         │
+│    68 │   │                                                                 │
+│    69 │   │   dict_ = self.speech_service._wrap_generate_from_text(text, ** │
+│ >  70 │   │   tracker = VoiceoverTracker(self, dict_, self.speech_service.c │
+│    71 │   │   self.renderer.skip_animations = self.renderer._original_skipp │
+│    72 │   │   self.add_sound(str(Path(self.speech_service.cache_dir) / dict │
+│    73 │   │   self.current_tracker = tracker                                │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\tracker.py:49 in │
+│ __init__                                                                    │
+│                                                                             │
+│    46 │   │   self.scene = scene                                            │
+│    47 │   │   self.data = data                                              │
+│    48 │   │   self.cache_dir = cache_dir                                    │
+│ >  49 │   │   self.duration = get_duration(Path(cache_dir) / self.data["fin │
+│    50 │   │   # last_t = scene.last_t                                       │
+│    51 │   │   last_t = scene.renderer.time                                  │
+│    52 │   │   if last_t is None:                                            │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\manim_voiceover\modify_audio.py: │
+│ 22 in get_duration                                                          │
+│                                                                             │
+│   19                                                                        │
+│   20                                                                        │
+│   21 def get_duration(path: str) -> float:                                  │
+│ > 22 │   audio = MP3(path)                                                  │
+│   23 │   return audio.info.length                                           │
+│   24 │   # return sox.file_info.duration(path)                              │
+│   25                                                                        │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\_file.py:48 in __init__  │
+│                                                                             │
+│    45 │   │   │   warnings.warn("FileType constructor requires a filename", │
+│    46 │   │   │   │   │   │     DeprecationWarning)                         │
+│    47 │   │   else:                                                         │
+│ >  48 │   │   │   self.load(*args, **kwargs)                                │
+│    49 │                                                                     │
+│    50 │   @loadfile()                                                       │
+│    51 │   def load(self, filething, *args, **kwargs):                       │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\_util.py:156 in wrapper  │
+│                                                                             │
+│    153 │   │   │   │   convert_file_args(args, kwargs)                      │
+│    154 │   │   │   with _openfile(self, filething, filename, fileobj,       │
+│    155 │   │   │   │   │   │      writable, create) as h:                   │
+│ >  156 │   │   │   │   return func(self, h, *args, **kwargs)                │
+│    157 │   │                                                                │
+│    158 │   │   @wraps(func)                                                 │
+│    159 │   │   def wrapper_func(*args, **kwargs):                           │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\id3\_file.py:420 in load │
+│                                                                             │
+│   417 │   │   else:                                                         │
+│   418 │   │   │   offset = None                                             │
+│   419 │   │                                                                 │
+│ > 420 │   │   self.info = self._Info(fileobj, offset)                       │
+│   421                                                                       │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\_util.py:185 in wrapper  │
+│                                                                             │
+│    182 │   │   @wraps(func)                                                 │
+│    183 │   │   def wrapper(*args, **kwargs):                                │
+│    184 │   │   │   try:                                                     │
+│ >  185 │   │   │   │   return func(*args, **kwargs)                         │
+│    186 │   │   │   except exc_dest:                                         │
+│    187 │   │   │   │   raise                                                │
+│    188 │   │   │   except exc_src as err:                                   │
+│                                                                             │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\mp3\__init__.py:401 in   │
+│ __init__                                                                    │
+│                                                                             │
+│   398 │   │   │   del frames[:]                                             │
+│   399 │   │                                                                 │
+│   400 │   │   if first_frame is None:                                       │
+│ > 401 │   │   │   raise HeaderNotFoundError("can't sync to MPEG frame")     │
+│   402 │   │                                                                 │
+│   403 │   │   assert first_frame                                            │
+│   404                                                                       │
+└─────────────────────────────────────────────────────────────────────────────┘
+HeaderNotFoundError: can't sync to MPEG frame
+
+2025-11-28 07:33:06,814 - ERROR -    Runtime Error!
+2025-11-28 07:33:06,814 - ERROR -                                                                            │
+│ D:\code\finally\yu3\venv\Lib\site-packages\mutagen\mp3\__init__.py:401 in   │
+│ __init__                                    ...
+2025-11-28 07:33:06,816 - ERROR - 
+FAILEDFAILEDFAILEDFAILEDFAILEDFAILEDFAILEDFAILEDFAILEDFAILED
+2025-11-28 07:33:06,816 - ERROR - FAILED after maximum retries
+2025-11-28 07:33:06,817 - ERROR - FAILEDFAILEDFAILEDFAILEDFAILEDFAILEDFAILEDFAILEDFAILEDFAILED

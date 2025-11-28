@@ -1,0 +1,101 @@
+[
+  {
+    "input_text": "What's a circle's area?",
+    "input_data": {
+      "input_text": "What's a circle's area?",
+      "service": "pyttsx3"
+    },
+    "original_audio": "what-s-a-circle-s-area-c04806fe.mp3",
+    "final_audio": "what-s-a-circle-s-area-c04806fe.mp3"
+  },
+  {
+    "input_text": "Imagine you're in a vast field, and you want to measure its size...",
+    "input_data": {
+      "input_text": "Imagine you're in a vast field, and you want to measure its size...",
+      "service": "pyttsx3"
+    },
+    "original_audio": "imagine-you-re-in-a-vast-field-and-you-want-to-d9297d85.mp3",
+    "final_audio": "imagine-you-re-in-a-vast-field-and-you-want-to-d9297d85.mp3"
+  },
+  {
+    "input_text": "Imagine a point at center. This forms the circle's starting position.",
+    "input_data": {
+      "input_text": "Imagine a point at center. This forms the circle's starting position.",
+      "service": "pyttsx3"
+    },
+    "original_audio": "imagine-a-point-at-center-this-forms-the-circle-s-c25efeaf.mp3",
+    "final_audio": "imagine-a-point-at-center-this-forms-the-circle-s-c25efeaf.mp3"
+  },
+  {
+    "input_text": "[Narration: To find the area of a circle, we slice it.]",
+    "input_data": {
+      "input_text": "[Narration: To find the area of a circle, we slice it.]",
+      "service": "pyttsx3"
+    },
+    "original_audio": "narration-to-find-the-area-of-a-circle-we-slice-it-9539b855.mp3",
+    "final_audio": "narration-to-find-the-area-of-a-circle-we-slice-it-9539b855.mp3"
+  },
+  {
+    "input_text": "[What is the Area of a Circle?]",
+    "input_data": {
+      "input_text": "[What is the Area of a Circle?]",
+      "service": "pyttsx3"
+    },
+    "original_audio": "what-is-the-area-of-a-circle-9494a6e3.mp3",
+    "final_audio": "what-is-the-area-of-a-circle-9494a6e3.mp3"
+  },
+  {
+    "input_text": "[Narration] Area of a circle?",
+    "input_data": {
+      "input_text": "[Narration] Area of a circle?",
+      "service": "pyttsx3"
+    },
+    "original_audio": "narration-area-of-a-circle-2ffeec50.mp3",
+    "final_audio": "narration-area-of-a-circle-2ffeec50.mp3"
+  },
+  {
+    "input_text": "[Narration] Area of a circle?",
+    "input_data": {
+      "input_text": "[Narration] Area of a circle?",
+      "service": "pyttsx3"
+    },
+    "original_audio": "narration-area-of-a-circle-2ffeec50.mp3",
+    "final_audio": "narration-area-of-a-circle-2ffeec50.mp3"
+  },
+  {
+    "input_text": "Consider a circle with radius 'r'.",
+    "input_data": {
+      "input_text": "Consider a circle with radius 'r'.",
+      "service": "pyttsx3"
+    },
+    "original_audio": "consider-a-circle-with-radius-r-ca3314bc.mp3",
+    "final_audio": "consider-a-circle-with-radius-r-ca3314bc.mp3"
+  },
+  {
+    "input_text": "[Consider a circle with radius 'r'.]",
+    "input_data": {
+      "input_text": "[Consider a circle with radius 'r'.]",
+      "service": "pyttsx3"
+    },
+    "original_audio": "consider-a-circle-with-radius-r-03c3e156.mp3",
+    "final_audio": "consider-a-circle-with-radius-r-03c3e156.mp3"
+  },
+  {
+    "input_text": "Consider a circle with radius 'r'.",
+    "input_data": {
+      "input_text": "Consider a circle with radius 'r'.",
+      "service": "pyttsx3"
+    },
+    "original_audio": "consider-a-circle-with-radius-r-ca3314bc.mp3",
+    "final_audio": "consider-a-circle-with-radius-r-ca3314bc.mp3"
+  },
+  {
+    "input_text": "Consider a circle with radius 'r'.",
+    "input_data": {
+      "input_text": "Consider a circle with radius 'r'.",
+      "service": "pyttsx3"
+    },
+    "original_audio": "consider-a-circle-with-radius-r-ca3314bc.mp3",
+    "final_audio": "consider-a-circle-with-radius-r-ca3314bc.mp3"
+  }
+]
